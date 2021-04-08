@@ -1,10 +1,31 @@
 import React, { Component } from "react";
 
 export default class NewAddressInfoCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      addressInfo: {
+        streetNum: "1876 SW 13th Street",
+        aptNum: "5",
+        cityName: "Miami",
+        stateName: "FL",
+        zipNum: "33145",
+      },
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    alert(JSON.stringify(this.state.addressInfo));
+    console.log(this.state.addressInfo);
+    event.preventDefault();
+  }
+
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label>
             Street Address
             <input type="text" name="streetNum" />
@@ -29,6 +50,8 @@ export default class NewAddressInfoCard extends Component {
             Zip Code
             <input type="text" name="zipNum" />
           </label>
+
+          <input type="submit" value="Submit" name="submitNewAddressCard" />
         </form>
       </div>
     );
